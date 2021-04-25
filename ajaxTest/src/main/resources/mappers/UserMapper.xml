@@ -11,10 +11,12 @@ SELECT * FROM ajaxTable
 where id=#{id}
 </select>
 
-<select id="ajax"  resultType="String" parameterType="String">
-SELECT name AS name
+<select id="ajax"  resultType="com.example.demo.domain.artifact.dto.userDTO" parameterType="com.example.demo.domain.artifact.dto.userDTO">
+SELECT name AS name,
+id AS id
 FROM ajaxTable
-where id=#{id}
+where id=#{id} 
+AND name=#{name}
 </select>
 
 

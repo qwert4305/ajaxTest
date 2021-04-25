@@ -82,12 +82,12 @@ public class MainController {
 	    // 에이젝스 컨트롤러 
 	    @RequestMapping(value = "/ajax", method = RequestMethod.POST, produces = "application/text; charset=utf-8")
 		@ResponseBody
-		public ModelAndView ajax(String a) throws Exception { // a 변수명은 에이젝스에서 보내는 data 첫번째 명과 매핑 -> data : 매핑 : js사용 이름
+		public ModelAndView ajax(userDTO dto) throws Exception { // a 변수명은 에이젝스에서 보내는 data 첫번째 명과 매핑 -> data : 매핑 : js사용 이름
 			ModelAndView mav = new ModelAndView();
 			mav.setViewName("jsonView");
-
-			List<String> result = dao.ajax(a); //값이 여러 줄이면 List 로 리턴 , 1줄이면 String
-			for (String list1 : result) {
+			
+			List<userDTO> result = dao.ajax(dto); //값이 여러 줄이면 List 로 리턴 , 1줄이면 String
+			for (userDTO list1 : result) {
 				System.out.println("뭐가 나올까1 : " +list1.toString());
 			}
 			System.out.println("뭐가 나올까1 : " + result);
@@ -97,9 +97,10 @@ public class MainController {
 				System.out.println("뭐가 나올까2 : " +list2.toString());
 			}
 			
-			ajax.addAll(result);
+			//ajax.addAll(result);
+			mav.addObject("result", result);
 			
-			mav.addObject("ajax", ajax); // "명찰"로 보내는 이름은 에이젝스에서 받을 때 data."명찰"과 매핑
+			//mav.addObject("ajax", ajax); // "명찰"로 보내는 이름은 에이젝스에서 받을 때 data."명찰"과 매핑
 
 			return mav;
 		}

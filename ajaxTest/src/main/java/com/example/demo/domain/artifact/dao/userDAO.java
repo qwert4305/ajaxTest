@@ -13,7 +13,7 @@ public interface userDAO {
 	
 	userDTO selectone(userDTO dto) throws Exception;
 	
-	List<String> ajax(String a) throws Exception;
+	List<userDTO> ajax(userDTO dto) throws Exception;
 	
 	                        
 }
